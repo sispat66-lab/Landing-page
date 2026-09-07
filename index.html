@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Look Like You Have Pierced Ears — Without the Piercing</title>
+  <meta name="description" content="Realistic magnetic earrings that give you the look you want without needles, pain or permanent piercings." />
+
+  <style>
+    /* Mobile-first, minimal, conversion-focused CSS */
+    :root{
+      --brand:#C62828;
+      --accent:#222;
+      --muted:#666;
+      --bg:#fff;
+      --max-width:900px;
+    }
+    *{box-sizing:border-box}
+    body{
+      font-family:system-ui,Helvetica,Arial,sans-serif;
+      margin:0;
+      color:var(--accent);
+      background:var(--bg);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:18px;}
+    header{display:flex;align-items:center;gap:12px;padding:10px 0}
+    .logo{font-weight:700;color:var(--brand);font-size:18px}
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:12px 0}
+    .hero-content h1{font-size:22px;margin:0 0 6px}
+    .hero-content p{margin:0 0 12px;color:var(--muted)}
+    .hero-cta{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{
+      background:var(--brand);
+      color:#fff;border:0;padding:12px 16px;border-radius:8px;font-weight:700;
+      text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+      box-shadow:0 6px 18px rgba(198,40,40,.18);
+    }
+    .btn.secondary{background:#fff;color:var(--brand);border:1px solid #eee;box-shadow:none}
+    .hero-image{width:100%;border-radius:12px;overflow:hidden;display:flex;justify-content:center;align-items:center}
+    .hero-image img{width:100%;height:auto;max-width:420px;object-fit:cover}
+
+    /* How it works */
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+    .card{padding:14px;border-radius:10px;background:#fafafa;border:1px solid #f0f0f0;text-align:center}
+    .card h4{margin:8px 0 6px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Order form */
+    #order{background:#fff;padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,.04);margin:18px 0}
+    #order h2{margin:0 0 6px}
+    #order p.sub{color:var(--muted);margin:0 0 12px}
+    form .field{margin-bottom:12px}
+    label{display:block;font-size:14px;margin-bottom:6px;font-weight:600}
+    input[type="text"], select, .quantity-selector{
+      width:100%;padding:10px;border-radius:8px;border:1px solid #e6e6e6;font-size:15px
+    }
+    .radio-row{display:flex;gap:8px;flex-wrap:wrap}
+    .radio{padding:10px 12px;border-radius:8px;border:1px solid #eee;background:#fff;cursor:pointer}
+    .small{font-size:13px;color:var(--muted)}
+    .flex{display:flex;gap:8px}
+    .flex .col{flex:1}
+    .loading-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.9);z-index:999;backdrop-filter:blur(2px)}
+    .hidden{display:none}
+    .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+    .benefit{padding:10px;border-radius:8px;background:#fff;border:1px solid #f2f2f2;font-size:14px}
+    .product-showcase{display:flex;gap:12px;overflow:auto;padding:10px 0}
+    .product-showcase img{width:220px;height:220px;object-fit:cover;border-radius:12px}
+    .testimonials{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+    .testimonial{padding:12px;border-radius:10px;border:1px solid #f0f0f0;background:#fafafa}
+    .faq{margin:12px 0}
+    .final-cta{padding:18px;background:linear-gradient(90deg,#fff 0,#fff 100%);border-radius:12px;text-align:center;margin:18px 0}
+    footer{padding:18px 0;color:var(--muted);font-size:13px}
+
+    /* Responsive tweaks */
+    @media(min-width:700px){
+      .hero{grid-template-columns:1fr 420px}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+      .benefits{grid-template-columns:repeat(4,1fr)}
+      .testimonials{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo" id="brandName">MagnaLook</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <h1 id="hero-heading">Look Like You Have Pierced Ears — Without the Piercing</h1>
+        <p><strong>Realistic magnetic earrings that give you the look you want without needles, pain or permanent piercings.</strong></p>
+        <p class="small">No needles • No pain • Stylish everyday look</p>
+        <div class="hero-cta">
+          <a href="#order" class="btn" id="heroOrderBtn">Order Yours Now</a>
+          <a href="#how" class="btn secondary">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-image" aria-hidden="true">
+        <!-- Replace the src with real product photo(s) -->
+        <img id="heroImg" src="images/product-hero.jpg" alt="Magnetic earrings shown on model or product" />
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">How It Works</h2>
+      <div class="grid-3" role="list">
+        <div class="card" role="listitem">
+          <div style="font-size:22px;font-weight:700">1</div>
+          <h4>Choose Your Quantity</h4>
+          <p>Select how many pairs you want — single pair or multi-pack options.</p>
+        </div>
+        <div class="card" role="listitem">
+          <div style="font-size:22px;font-weight:700">2</div>
+          <h4>Enter Your Details</h4>
+          <p>Tell us your name, region and preferred delivery or pickup.</p>
+        </div>
+        <div class="card" role="listitem">
+          <div style="font-size:22px;font-weight:700">3</div>
+          <h4>Confirm on WhatsApp</h4>
+          <p>Your order is prepared and WhatsApp opens with your details filled in for quick confirmation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER / QUALIFICATION -->
+    <section id="order" aria-labelledby="order-heading">
+      <h2 id="order-heading">Ready to Order?</h2>
+      <p class="sub">Enter your details below and we'll confirm your order on WhatsApp.</p>
+
+      <form id="orderForm" autocomplete="off" novalidate>
+        <!-- FIELD 1: Full Name -->
+        <div class="field">
+          <label for="fullName">Full Name <span class="small" id="nameNote">*</span></label>
+          <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
+          <div class="small hidden" id="errName" style="color:#C62828">Please enter your full name.</div>
+        </div>
+
+        <!-- FIELD 2: Region and Town/Area -->
+        <div class="field flex">
+          <div class="col">
+            <label for="region">Which region are you located in? <span class="small" id="regionRequired">*</span></label>
+            <select id="region" name="region">
+              <option value="">Select region</option>
+              <option>Greater Accra</option>
+              <option>Ashanti</option>
+              <option>Western</option>
+              <option>Western North</option>
+              <option>Central</option>
+              <option>Eastern</option>
+              <option>Volta</option>
+              <option>Oti</option>
+              <option>Northern</option>
+              <option>Savannah</option>
+              <option>North East</option>
+              <option>Upper East</option>
+              <option>Upper West</option>
+              <option>Bono</option>
+              <option>Bono East</option>
+              <option>Ahafo</option>
+            </select>
+            <div class="small hidden" id="errRegion" style="color:#C62828">Please select your region.</div>
+          </div>
+          <div class="col">
+            <label for="area">Enter your town/area</label>
+            <input id="area" name="area" type="text" placeholder="e.g. East Legon, Kumasi, Takoradi" />
+            <div class="small" id="areaNote">Helps with delivery arrangements.</div>
+          </div>
+        </div>
+
+        <!-- FIELD 3: How many pairs -->
+        <div class="field">
+          <label for="quantity">How many pairs do you want?</label>
+          <select id="quantity" name="quantity" class="quantity-selector" required>
+            <option value="">Select quantity</option>
+            <option>1 Pair</option>
+            <option>2 Pairs</option>
+            <option>3 Pairs</option>
+            <option>4 Pairs</option>
+            <option>5 Pairs</option>
+            <option>6 Pairs</option>
+            <option>7 Pairs</option>
+            <option>8 Pairs</option>
+            <option>9 Pairs</option>
+            <option>10 Pairs</option>
+            <option>11+ Pairs</option>
+          </select>
+          <div class="small hidden" id="errQuantity" style="color:#C62828">Please select how many pairs you want.</div>
+        </div>
+
+        <!-- FIELD 4: Delivery or Pickup -->
+        <div class="field">
+          <label>How would you like to receive your order?</label>
+          <div class="radio-row" role="radiogroup" aria-label="Delivery or Pickup">
+            <label class="radio"><input type="radio" name="deliveryMethod" value="Delivery" checked /> Delivery</label>
+            <label class="radio"><input type="radio" name="deliveryMethod" value="Pickup" /> Pickup</label>
+          </div>
+          <div class="small">If you choose Pickup we may ask for a preferred pickup point when confirming on WhatsApp.</div>
+        </div>
+
+        <!-- FIELD 5: Customer qualification -->
+        <div class="field">
+          <label>Are you ready to order?</label>
+          <div class="radio-row" role="radiogroup" aria-label="Are you ready to order">
+            <label class="radio"><input type="radio" name="ready" value="ready" checked /> Yes, I'm ready to order</label>
+            <label class="radio"><input type="radio" name="ready" value="questions" /> I have a few questions first</label>
+          </div>
+        </div>
+
+        <!-- Hidden tracking fields (auto-populated) -->
+        <input type="hidden" id="fbclid" name="fbclid" />
+        <input type="hidden" id="utm_source" name="utm_source" />
+        <input type="hidden" id="utm_medium" name="utm_medium" />
+        <input type="hidden" id="utm_campaign" name="utm_campaign" />
+        <input type="hidden" id="utm_content" name="utm_content" />
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <button type="submit" class="btn" id="submitBtn">Continue to WhatsApp</button>
+          <div class="small" style="color:var(--muted)">We will confirm availability & delivery on WhatsApp.</div>
+        </div>
+      </form>
+    </section>
+
+    <!-- PRODUCT BENEFITS -->
+    <section aria-labelledby="benefits-heading">
+      <h2 id="benefits-heading">Why You'll Love Them</h2>
+      <div class="benefits" id="benefitsList">
+        <div class="benefit">No piercing required</div>
+        <div class="benefit">Easy to wear</div>
+        <div class="benefit">Realistic appearance</div>
+        <div class="benefit">Magnetic design</div>
+        <div class="benefit">Easy to put on and remove</div>
+        <div class="benefit">Stylish everyday look</div>
+        <div class="benefit">Great for people without pierced ears</div>
+        <div class="benefit">No permanent commitment</div>
+      </div>
+    </section>
+
+    <!-- PRODUCT SHOWCASE -->
+    <section aria-labelledby="showcase-heading">
+      <h2 id="showcase-heading">Product Showcase</h2>
+      <div class="product-showcase" id="productShowcase">
+        <img src="images/product-1.jpg" alt="Product image 1" />
+        <img src="images/product-2.jpg" alt="Product image 2" />
+        <img src="images/product-3.jpg" alt="Product image 3" />
+      </div>
+      <p class="small">Each order includes: the magnetic earrings as shown. Replace these images with your real product photos in the /images folder.</p>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading">What Our Customers Say</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq-heading">
+      <h2 id="faq-heading">FAQ</h2>
+      <div class="faq">
+        <h4>Do I need pierced ears?</h4>
+        <p class="small">No. The magnetic design allows you to wear the earrings without traditional piercing.</p>
+
+        <h4>How do I order?</h4>
+        <p class="small">Fill the short form above, submit your details and continue to WhatsApp to confirm your order.</p>
+
+        <h4>How many pairs can I order?</h4>
+        <p class="small">You can select between 1 and 10 pairs, or choose 11+ pairs if you want more.</p>
+
+        <h4>Do you deliver?</h4>
+        <p class="small">Yes. Select Delivery and provide your region and town/area so delivery can be arranged.</p>
+
+        <h4>Can I pick up my order?</h4>
+        <p class="small">Yes. Select Pickup when completing the form and we'll confirm pickup options on WhatsApp.</p>
+
+        <h4>How do the magnetic earrings work?</h4>
+        <p class="small">They use a magnetic mechanism to hold the earring in place without requiring a traditional piercing.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" aria-labelledby="final-cta-heading">
+      <h2 id="final-cta-heading">Ready to Try Magnetic Earrings?</h2>
+      <p class="small">Choose your quantity, tell us where you're located, and continue to WhatsApp to confirm your order.</p>
+      <a href="#order" class="btn" id="finalOrderBtn">Order Yours Now</a>
+    </section>
+
+    <footer>
+      <div class="small">© <span id="footerBrand"></span> — Magnetic earrings. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading-overlay hidden">
+    <div style="background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,.08);text-align:center">
+      <div style="font-weight:700;margin-bottom:8px">Preparing your order...</div>
+      <div class="small">Opening WhatsApp soon. Please wait...</div>
+    </div>
+  </div>
+
+  <script>
+    /************************************************************************
+     * CONFIGURATION (central place to change values)
+     * - Change WhatsApp number, product details, Pixel ID, images, CTA text etc.
+     *************************************************************************/
+    const CONFIG = {
+      whatsappNumber: '+233551757001',    // international format, easy to change
+      productName: 'Realistic Magnetic Earrings',
+      productPrice: 'N/A',                // optional
+      productImages: [
+        'images/product-1.jpg',
+        'images/product-2.jpg',
+        'images/product-3.jpg',
+      ],
+      testimonials: [
+        /* placeholders: replace with real reviews */
+      ],
+      metaPixelId: '', // e.g. '123456789012345' — leave empty if not using pixel. DO NOT insert fake ID.
+      ctaText: 'Order Yours Now',
+      availableQuantities: [
+        '1 Pair','2 Pairs','3 Pairs','4 Pairs','5 Pairs','6 Pairs','7 Pairs','8 Pairs','9 Pairs','10 Pairs','11+ Pairs'
+      ]
+    };
+
+    /************************************************************************
+     * Helper utilities
+     *************************************************************************/
+    function qs(sel){return document.querySelector(sel)}
+    function qsa(sel){return Array.from(document.querySelectorAll(sel))}
+    function normalizeWhatsAppNumber(n){ return n.replace(/\D/g,'').replace(/^0+/,''); }
+    function getQueryParams(){
+      const params = {};
+      location.search.replace(/^\?/,'').split('&').forEach(kv=>{
+        if(!kv) return;
+        const [k,v] = kv.split('=').map(decodeURIComponent);
+        params[k]=v||'';
+      });
+      return params;
+    }
+
+    /************************************************************************
+     * Initialize page values from CONFIG
+     *************************************************************************/
+    document.getElementById('brandName').textContent = CONFIG.productName || 'MagnaLook';
+    document.getElementById('footerBrand').textContent = CONFIG.productName || 'MagnaLook';
+    qs('#heroImg').src = CONFIG.productImages[0] || qs('#heroImg').src;
+
+    // populate product showcase
+    const showcase = qs('#productShowcase');
+    showcase.innerHTML = '';
+    CONFIG.productImages.forEach(src=>{
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = CONFIG.productName;
+      showcase.appendChild(img);
+    });
+
+    // populate testimonials placeholders if provided
+    // (left as placeholders in HTML; you can modify DOM here if needed)
+
+    // populate quantities dynamically (keeps a single source)
+    const quantitySelect = qs('#quantity');
+    if(CONFIG.availableQuantities && CONFIG.availableQuantities.length){
+      quantitySelect.innerHTML = '<option value="">Select quantity</option>';
+      CONFIG.availableQuantities.forEach(q => {
+        const opt = document.createElement('option');
+        opt.textContent = q;
+        opt.value = q;
+        quantitySelect.appendChild(opt);
+      });
+    }
+
+    // populate hidden tracking inputs from query params
+    const params = getQueryParams();
+    ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
+      if(params[k]) qs('#'+k).value = params[k];
+    });
+
+    /************************************************************************
+     * Meta Pixel (optional) - only if CONFIG.metaPixelId is set
+     *************************************************************************/
+    (function initPixel(){
+      if(!CONFIG.metaPixelId) return;
+      !function(f,b,e,v,n,t,s){
+        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+      }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', CONFIG.metaPixelId);
+      fbq('track','PageView');
+    })();
+
+    /************************************************************************
+     * Form handling & validation
+     *************************************************************************/
+    const form = qs('#orderForm');
+    const loading = qs('#loading');
+    const submitBtn = qs('#submitBtn');
+    function showLoading(){ loading.classList.remove('hidden'); }
+    function hideLoading(){ loading.classList.add('hidden'); }
+
+    function validateForm(){
+      let valid = true;
+      // name required
+      const name = qs('#fullName').value.trim();
+      if(!name){ qs('#errName').classList.remove('hidden'); valid = false; } else qs('#errName').classList.add('hidden');
+
+      // quantity required
+      const qty = qs('#quantity').value;
+      if(!qty){ qs('#errQuantity').classList.remove('hidden'); valid = false; } else qs('#errQuantity').classList.add('hidden');
+
+      // region required if Delivery selected
+      const deliveryMethod = qsa('input[name="deliveryMethod"]').find(r=>r.checked).value;
+      const region = qs('#region').value;
+      if(deliveryMethod === 'Delivery'){
+        if(!region){ qs('#errRegion').classList.remove('hidden'); valid = false; } else qs('#errRegion').classList.add('hidden');
+        // area optionally required for delivery? The form accepts optional; keep optional but encouraged.
+      } else {
+        // Pickup: region/area optional
+        qs('#errRegion').classList.add('hidden');
+      }
+      return valid;
+    }
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!validateForm()) return;
+
+      // Prepare WhatsApp message
+      const name = qs('#fullName').value.trim();
+      const region = qs('#region').value || 'N/A';
+      const area = qs('#area').value.trim() || 'N/A';
+      const quantity = qs('#quantity').value;
+      const deliveryMethod = qsa('input[name="deliveryMethod"]').find(r=>r.checked).value;
+      const readyValue = qsa('input[name="ready"]').find(r=>r.checked).value;
+      const customerStatus = readyValue === 'ready' ? "Ready to order" : "Has questions before ordering";
+
+      // Tracking params capture
+      const utm_source = qs('#utm_source').value || params.utm_source || '';
+      const utm_medium = qs('#utm_medium').value || params.utm_medium || '';
+      const utm_campaign = qs('#utm_campaign').value || params.utm_campaign || '';
+      const utm_content = qs('#utm_content').value || params.utm_content || '';
+      const fbclid = qs('#fbclid').value || params.fbclid || '';
+
+      // Build message with all fields and tracking
+      let message = `Hello, I would like to order the ${CONFIG.productName}.\n\n`;
+      message += `Name: ${name}\n`;
+      message += `Region: ${region}\n`;
+      message += `Area: ${area}\n`;
+      message += `Number of pairs: ${quantity}\n`;
+      message += `Delivery option: ${deliveryMethod}\n`;
+      message += `Customer status: ${customerStatus}\n\n`;
+      message += `I came through your Meta Ad.`;
+      if(fbclid) message += ` fbclid: ${fbclid}`;
+      if(utm_source || utm_medium || utm_campaign || utm_content){
+        message += `\nUTM: ${utm_source || '-'} | ${utm_medium || '-'} | ${utm_campaign || '-'} | ${utm_content || '-'}`;
+      }
+
+      // Show loading state
+      showLoading();
+
+      // Fire Meta Pixel 'Lead' event (if pixel configured)
+      if(window.fbq){
+        try{ fbq('track','Lead'); }catch(e){/*ignore*/ }
+      }
+
+      // Short delay to show "Preparing your order..." then open WhatsApp
+      setTimeout(()=> {
+        // Fire Contact event when proceeding to WhatsApp
+        if(window.fbq){
+          try{ fbq('track','Contact'); }catch(e){/*ignore*/ }
+        }
+
+        // Open WhatsApp with encoded message
+        const rawNumber = CONFIG.whatsappNumber || '';
+        const normalized = normalizeWhatsAppNumber(rawNumber);
+        // Ensure country code present (if number started with 0 for local input, normalize removed leading zeros)
+        // If user supplied with + or 233..., normalize returns digits only. wa.me requires no plus and no spaces.
+        const encoded = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${normalized}?text=${encoded}`;
+
+        // Hide loading and open WhatsApp (new window/tab). On mobile this will open WhatsApp app.
+        hideLoading();
+        window.open(waUrl, '_blank');
+
+      }, 900); // keep very short delay (UX shows preparing text)
+
+    });
+
+    /************************************************************************
+     * Small UX: scroll and focus behavior
+     *************************************************************************/
+    // scroll to order form functions
+    function scrollToOrder(){
+      const el = qs('#order');
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      // small focus for mobile
+      setTimeout(()=> qs('#fullName').focus(),400);
+    }
+    qs('#heroOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
+    qs('#finalOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
+
+    /************************************************************************
+     * Notes & small safeguards
+     *************************************************************************/
+    // Ensure tracking hidden fields keep values if present in URL when user navigates
+    window.addEventListener('pageshow', function(){ const p = getQueryParams();
+      ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
+        if(p[k]) qs('#'+k).value = p[k];
+      });
+    });
+  </script>
+</body>
+</html>
