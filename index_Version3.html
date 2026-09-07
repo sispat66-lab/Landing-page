@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Look Like You Have Pierced Ears — Without the Piercing | MickeyGem</title>
+  <meta name="description" content="Realistic magnetic earrings that give you the look you want without needles, pain or permanent piercings." />
+  <meta name="color-scheme" content="light">
+
+  <style>
+    /* MickeyGem — mobile-first, black + gold (#C9A227) */
+    :root{
+      --gold: #C9A227;
+      --gold-2: linear-gradient(180deg,#d0aa2f,#b5861a);
+      --accent: #0b0b0b;
+      --muted: #6c6c6c;
+      --bg: #f7f4ef;       /* warm off-white to match logo texture */
+      --card-bg: #ffffff;
+      --max-width: 980px;
+      --radius: 12px;
+      --shadow: 0 8px 28px rgba(11,11,11,.06);
+      --focus: 0 0 0 4px rgba(201,162,39,.14);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:var(--accent);
+      background:var(--bg) no-repeat center top / cover;
+      -webkit-text-size-adjust:100%;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:18px;}
+
+    /* Header */
+    header{display:flex;align-items:center;gap:14px;padding:10px 0}
+    .logo-link{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
+    .logo-img{height:48px;width:auto;display:block}
+    .brand-text{font-weight:800;color:var(--accent);font-size:18px;letter-spacing:0.2px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:6px 0 20px}
+    .hero-content h1{font-size:22px;line-height:1.08;margin:0 0 8px;font-weight:800;color:var(--accent)}
+    .hero-content p.lead{margin:0 0 10px;color:var(--muted);font-size:15px}
+    .hero-content p.lead strong{color:var(--accent)}
+    .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .btn{
+      background:var(--gold);
+      color:#000;border:0;padding:12px 16px;border-radius:10px;font-weight:800;
+      text-decoration:none;display:inline-flex;align-items:center;justify-content:center;
+      box-shadow:0 10px 28px rgba(201,162,39,.12);
+      cursor:pointer;
+      transition:transform .08s ease;
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn.secondary{
+      background:transparent;color:var(--accent);border:2px solid rgba(11,11,11,.06);box-shadow:none;font-weight:700;
+    }
+
+    .hero-image{width:100%;border-radius:var(--radius);overflow:hidden;display:flex;justify-content:center;align-items:center}
+    .hero-image img{width:100%;height:auto;max-width:640px;object-fit:cover;border-radius:var(--radius);display:block}
+
+    /* How it works */
+    h2{margin:18px 0 8px;font-size:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 18px}
+    .card{padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(0,0,0,.04);text-align:center;box-shadow:var(--shadow)}
+    .card .step{font-size:20px;font-weight:900;color:var(--gold);margin-bottom:8px}
+    .card h4{margin:6px 0 6px;font-size:15px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Order form */
+    #order{background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow);margin:10px 0}
+    #order h2{margin:0 0 6px}
+    #order p.sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+    form .field{margin-bottom:12px}
+    label{display:block;font-size:14px;margin-bottom:6px;font-weight:700;color:var(--accent)}
+    input[type="text"], select, .quantity-selector{
+      width:100%;padding:12px;border-radius:10px;border:1px solid rgba(11,11,11,.08);font-size:15px;background:transparent;color:var(--accent);
+      outline:none;
+    }
+    input[type="text"]::placeholder{color:#9b9b9b}
+    select:focus,input[type="text"]:focus{box-shadow:var(--focus)}
+    .radio-row{display:flex;gap:8px;flex-wrap:wrap}
+    .radio{padding:10px 12px;border-radius:10px;border:1px solid rgba(11,11,11,.06);background:#fff;cursor:pointer;font-weight:700;color:var(--accent)}
+    .small{font-size:13px;color:var(--muted)}
+    .flex{display:flex;gap:8px}
+    .flex .col{flex:1}
+    .loading-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.9);z-index:999;backdrop-filter:blur(2px)}
+    .hidden{display:none}
+    .benefits{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+    .benefit{padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,.04);font-size:14px;box-shadow:0 6px 18px rgba(11,11,11,.03)}
+    .product-showcase{display:flex;gap:12px;overflow:auto;padding:10px 0}
+    .product-showcase img{width:220px;height:220px;object-fit:cover;border-radius:12px;flex:0 0 auto}
+    .testimonials{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+    .testimonial{padding:12px;border-radius:10px;border:1px solid rgba(0,0,0,.04);background:#fff}
+    .faq{margin:12px 0}
+    .final-cta{padding:18px;border-radius:12px;text-align:center;margin:18px 0;background:linear-gradient(180deg,rgba(201,162,39,.06),transparent)}
+    footer{padding:18px 0;color:var(--muted);font-size:13px;text-align:center}
+
+    /* small screens */
+    @media(min-width:720px){
+      .hero{grid-template-columns:1fr 520px}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+      .benefits{grid-template-columns:repeat(4,1fr)}
+      .testimonials{grid-template-columns:repeat(3,1fr)}
+    }
+
+    /* simple utility */
+    .muted { color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <!-- Logo image (images/logo.png provided by you) -->
+      <a href="/" class="logo-link" aria-label="MickeyGem home">
+        <img src="images/logo.png" alt="MickeyGem logo" class="logo-img" />
+        <span class="brand-text">MickeyGem</span>
+      </a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="hero-content">
+        <h1 id="hero-heading">Look Like You Have Pierced Ears — Without the Piercing</h1>
+        <p class="lead"><strong>Realistic magnetic earrings that give you the look you want without needles, pain or permanent piercings.</strong></p>
+        <p class="small muted">No needles • No pain • Stylish everyday look</p>
+        <div class="hero-cta">
+          <a href="#order" class="btn" id="heroOrderBtn">Order Yours Now</a>
+          <a href="#how" class="btn secondary">How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-image" aria-hidden="true">
+        <!-- Model hero photo you requested -->
+        <img id="heroImg" src="images/product-hero.png" alt="Model wearing MickeyGem magnetic earrings" />
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" aria-labelledby="how-heading">
+      <h2 id="how-heading">How It Works</h2>
+      <div class="grid-3" role="list">
+        <div class="card" role="listitem">
+          <div class="step">1</div>
+          <h4>Choose Your Quantity</h4>
+          <p>Select how many pairs you want — single pair or multi-pack options.</p>
+        </div>
+        <div class="card" role="listitem">
+          <div class="step">2</div>
+          <h4>Enter Your Details</h4>
+          <p>Tell us your name, region and preferred delivery or pickup.</p>
+        </div>
+        <div class="card" role="listitem">
+          <div class="step">3</div>
+          <h4>Confirm on WhatsApp</h4>
+          <p>Your order is prepared and WhatsApp opens with your details filled in for quick confirmation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORDER / QUALIFICATION -->
+    <section id="order" aria-labelledby="order-heading">
+      <h2 id="order-heading">Ready to Order?</h2>
+      <p class="sub">Enter your details below and we'll confirm your order on WhatsApp.</p>
+
+      <form id="orderForm" autocomplete="off" novalidate>
+        <!-- FIELD 1: Full Name -->
+        <div class="field">
+          <label for="fullName">Full Name <span class="small" id="nameNote">*</span></label>
+          <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
+          <div class="small hidden" id="errName" style="color:var(--gold)">Please enter your full name.</div>
+        </div>
+
+        <!-- FIELD 2: Region and Town/Area (Ghana regions preserved) -->
+        <div class="field flex">
+          <div class="col">
+            <label for="region">Which region are you located in? <span class="small" id="regionRequired">*</span></label>
+            <select id="region" name="region">
+              <option value="">Select region</option>
+              <option>Greater Accra</option>
+              <option>Ashanti</option>
+              <option>Western</option>
+              <option>Western North</option>
+              <option>Central</option>
+              <option>Eastern</option>
+              <option>Volta</option>
+              <option>Oti</option>
+              <option>Northern</option>
+              <option>Savannah</option>
+              <option>North East</option>
+              <option>Upper East</option>
+              <option>Upper West</option>
+              <option>Bono</option>
+              <option>Bono East</option>
+              <option>Ahafo</option>
+            </select>
+            <div class="small hidden" id="errRegion" style="color:var(--gold)">Please select your region.</div>
+          </div>
+          <div class="col">
+            <label for="area">Enter your town/area</label>
+            <input id="area" name="area" type="text" placeholder="e.g. East Legon, Kumasi, Takoradi" />
+            <div class="small" id="areaNote">Helps with delivery arrangements.</div>
+          </div>
+        </div>
+
+        <!-- FIELD 3: How many pairs -->
+        <div class="field">
+          <label for="quantity">How many pairs do you want?</label>
+          <select id="quantity" name="quantity" class="quantity-selector" required>
+            <option value="">Select quantity</option>
+            <!-- options populated from CONFIG below -->
+          </select>
+          <div class="small hidden" id="errQuantity" style="color:var(--gold)">Please select how many pairs you want.</div>
+        </div>
+
+        <!-- FIELD 4: Delivery or Pickup -->
+        <div class="field">
+          <label>How would you like to receive your order?</label>
+          <div class="radio-row" role="radiogroup" aria-label="Delivery or Pickup">
+            <label class="radio"><input type="radio" name="deliveryMethod" value="Delivery" checked /> Delivery</label>
+            <label class="radio"><input type="radio" name="deliveryMethod" value="Pickup" /> Pickup</label>
+          </div>
+          <div class="small">If you choose Pickup we may ask for a preferred pickup point when confirming on WhatsApp.</div>
+        </div>
+
+        <!-- FIELD 5: Customer qualification -->
+        <div class="field">
+          <label>Are you ready to order?</label>
+          <div class="radio-row" role="radiogroup" aria-label="Are you ready to order">
+            <label class="radio"><input type="radio" name="ready" value="ready" checked /> Yes, I'm ready to order</label>
+            <label class="radio"><input type="radio" name="ready" value="questions" /> I have a few questions first</label>
+          </div>
+        </div>
+
+        <!-- Hidden tracking fields (auto-populated) -->
+        <input type="hidden" id="fbclid" name="fbclid" />
+        <input type="hidden" id="utm_source" name="utm_source" />
+        <input type="hidden" id="utm_medium" name="utm_medium" />
+        <input type="hidden" id="utm_campaign" name="utm_campaign" />
+        <input type="hidden" id="utm_content" name="utm_content" />
+
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <button type="submit" class="btn" id="submitBtn">Continue to WhatsApp</button>
+          <div class="small muted">We will confirm availability & delivery on WhatsApp.</div>
+        </div>
+      </form>
+    </section>
+
+    <!-- PRODUCT BENEFITS -->
+    <section aria-labelledby="benefits-heading">
+      <h2 id="benefits-heading">Why You'll Love Them</h2>
+      <div class="benefits" id="benefitsList">
+        <div class="benefit">No piercing required</div>
+        <div class="benefit">Easy to wear</div>
+        <div class="benefit">Realistic appearance</div>
+        <div class="benefit">Magnetic design</div>
+        <div class="benefit">Easy to put on and remove</div>
+        <div class="benefit">Stylish everyday look</div>
+        <div class="benefit">Great for people without pierced ears</div>
+        <div class="benefit">No permanent commitment</div>
+      </div>
+    </section>
+
+    <!-- PRODUCT SHOWCASE -->
+    <section aria-labelledby="showcase-heading">
+      <h2 id="showcase-heading">Product Showcase</h2>
+      <div class="product-showcase" id="productShowcase">
+        <img src="images/product-1.jpg" alt="Product image 1" />
+        <img src="images/product-2.jpg" alt="Product image 2" />
+        <img src="images/product-3.jpg" alt="Product image 3" />
+      </div>
+      <p class="small muted">Each order includes the magnetic earrings as shown. Replace images in /images to update photos.</p>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section aria-labelledby="testimonials-heading">
+      <h2 id="testimonials-heading">What Our Customers Say</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+        <div class="testimonial">
+          <div>★★★★★</div>
+          <div class="small">[Add real customer review here]</div>
+          <div class="small">[Customer Name]</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section aria-labelledby="faq-heading">
+      <h2 id="faq-heading">FAQ</h2>
+      <div class="faq">
+        <h4>Do I need pierced ears?</h4>
+        <p class="small">No. The magnetic design allows you to wear the earrings without traditional piercing.</p>
+
+        <h4>How do I order?</h4>
+        <p class="small">Fill the short form above, submit your details and continue to WhatsApp to confirm your order.</p>
+
+        <h4>How many pairs can I order?</h4>
+        <p class="small">You can select between 1 and 10 pairs, or choose 11+ pairs if you want more.</p>
+
+        <h4>Do you deliver?</h4>
+        <p class="small">Yes. Select Delivery and provide your region and town/area so delivery can be arranged.</p>
+
+        <h4>Can I pick up my order?</h4>
+        <p class="small">Yes. Select Pickup when completing the form and we'll confirm pickup options on WhatsApp.</p>
+
+        <h4>How do the magnetic earrings work?</h4>
+        <p class="small">They use a magnetic mechanism to hold the earring in place without requiring a traditional piercing.</p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta" aria-labelledby="final-cta-heading">
+      <h2 id="final-cta-heading">Ready to Try Magnetic Earrings?</h2>
+      <p class="small muted">Choose your quantity, tell us where you're located, and continue to WhatsApp to confirm your order.</p>
+      <a href="#order" class="btn" id="finalOrderBtn">Order Yours Now</a>
+    </section>
+
+    <footer>
+      <div class="small muted">© <span id="footerBrand"></span> — Magnetic earrings. All rights reserved.</div>
+    </footer>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loading" class="loading-overlay hidden" aria-hidden="true">
+    <div style="background:var(--card-bg);padding:18px;border-radius:12px;box-shadow:var(--shadow);text-align:center">
+      <div style="font-weight:800;margin-bottom:8px">Preparing your order...</div>
+      <div class="small muted">Opening WhatsApp soon. Please wait...</div>
+    </div>
+  </div>
+
+  <script>
+    /************************************************************************
+     * CONFIGURATION (central place to change values)
+     *************************************************************************/
+    const CONFIG = {
+      whatsappNumber: '+233551757001',    // easy to change
+      productName: 'MickeyGem',
+      productPrice: 'N/A',
+      productImages: [
+        'images/product-1.jpg',
+        'images/product-2.jpg',
+        'images/product-3.jpg',
+      ],
+      testimonials: [],
+      metaPixelId: '', // add your Meta Pixel ID if you have one
+      ctaText: 'Order Yours Now',
+      availableQuantities: [
+        '1 Pair','2 Pairs','3 Pairs','4 Pairs','5 Pairs','6 Pairs','7 Pairs','8 Pairs','9 Pairs','10 Pairs','11+ Pairs'
+      ]
+    };
+
+    /************************************************************************
+     * Helpers
+     *************************************************************************/
+    const qs = s => document.querySelector(s);
+    const qsa = s => Array.from(document.querySelectorAll(s));
+    function normalizeWhatsAppNumber(n){ return n.replace(/\D/g,'').replace(/^0+/,''); }
+    function getQueryParams(){
+      const params = {};
+      location.search.replace(/^\?/,'').split('&').forEach(kv=>{
+        if(!kv) return;
+        const parts = kv.split('=');
+        const k = decodeURIComponent(parts[0] || '');
+        const v = parts[1] ? decodeURIComponent(parts.slice(1).join('=')) : '';
+        if(k) params[k]=v;
+      });
+      return params;
+    }
+
+    /************************************************************************
+     * Init page from CONFIG
+     *************************************************************************/
+    document.getElementById('footerBrand').textContent = CONFIG.productName || 'MickeyGem';
+    // set hero image explicitly (requested)
+    qs('#heroImg').src = 'images/product-hero.png';
+
+    // populate showcase images
+    const showcase = qs('#productShowcase');
+    showcase.innerHTML = '';
+    (CONFIG.productImages || []).forEach(src=>{
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = CONFIG.productName;
+      showcase.appendChild(img);
+    });
+
+    // populate quantities
+    const quantitySelect = qs('#quantity');
+    if(CONFIG.availableQuantities && CONFIG.availableQuantities.length){
+      quantitySelect.innerHTML = '<option value="">Select quantity</option>';
+      CONFIG.availableQuantities.forEach(q => {
+        const opt = document.createElement('option');
+        opt.textContent = q;
+        opt.value = q;
+        quantitySelect.appendChild(opt);
+      });
+    }
+
+    // capture URL tracking params
+    const params = getQueryParams();
+    ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
+      if(params[k]) {
+        const el = qs('#' + k);
+        if(el) el.value = params[k];
+      }
+    });
+
+    /************************************************************************
+     * Optional Meta Pixel
+     *************************************************************************/
+    (function initPixel(){
+      if(!CONFIG.metaPixelId) return;
+      !function(f,b,e,v,n,t,s){
+        if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+      }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', CONFIG.metaPixelId);
+      fbq('track','PageView');
+    })();
+
+    /************************************************************************
+     * Form handling & WhatsApp prefill
+     *************************************************************************/
+    const form = qs('#orderForm');
+    const loading = qs('#loading');
+
+    function showLoading(){ loading.classList.remove('hidden'); loading.setAttribute('aria-hidden','false'); }
+    function hideLoading(){ loading.classList.add('hidden'); loading.setAttribute('aria-hidden','true'); }
+
+    function validateForm(){
+      let valid = true;
+      const name = qs('#fullName').value.trim();
+      if(!name){ qs('#errName').classList.remove('hidden'); valid = false; } else qs('#errName').classList.add('hidden');
+
+      const qty = qs('#quantity').value;
+      if(!qty){ qs('#errQuantity').classList.remove('hidden'); valid = false; } else qs('#errQuantity').classList.add('hidden');
+
+      const deliveryMethod = qsa('input[name="deliveryMethod"]').find(r=>r.checked).value;
+      const region = qs('#region').value;
+      if(deliveryMethod === 'Delivery'){
+        if(!region){ qs('#errRegion').classList.remove('hidden'); valid = false; } else qs('#errRegion').classList.add('hidden');
+      } else {
+        qs('#errRegion').classList.add('hidden');
+      }
+      return valid;
+    }
+
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!validateForm()) return;
+
+      const name = qs('#fullName').value.trim();
+      const region = qs('#region').value || 'N/A';
+      const area = qs('#area').value.trim() || 'N/A';
+      const quantity = qs('#quantity').value;
+      const deliveryMethod = qsa('input[name="deliveryMethod"]').find(r=>r.checked).value;
+      const readyValue = qsa('input[name="ready"]').find(r=>r.checked).value;
+      const customerStatus = readyValue === 'ready' ? "Ready to order" : "Has questions before ordering";
+
+      const utm_source = qs('#utm_source').value || params.utm_source || '';
+      const utm_medium = qs('#utm_medium').value || params.utm_medium || '';
+      const utm_campaign = qs('#utm_campaign').value || params.utm_campaign || '';
+      const utm_content = qs('#utm_content').value || params.utm_content || '';
+      const fbclid = qs('#fbclid').value || params.fbclid || '';
+
+      // Build message
+      let message = `Hello, I would like to order the ${CONFIG.productName}.\n\n`;
+      message += `Name: ${name}\n`;
+      message += `Region: ${region}\n`;
+      message += `Area: ${area}\n`;
+      message += `Number of pairs: ${quantity}\n`;
+      message += `Delivery option: ${deliveryMethod}\n`;
+      message += `Customer status: ${customerStatus}\n\n`;
+      message += `I came through your Meta Ad.`;
+      if(fbclid) message += ` fbclid: ${fbclid}`;
+      if(utm_source || utm_medium || utm_campaign || utm_content){
+        message += `\nUTM: ${utm_source || '-'} | ${utm_medium || '-'} | ${utm_campaign || '-'} | ${utm_content || '-'}`;
+      }
+
+      showLoading();
+      if(window.fbq){
+        try{ fbq('track','Lead'); }catch(e){}
+      }
+
+      setTimeout(()=> {
+        if(window.fbq){
+          try{ fbq('track','Contact'); }catch(e){}
+        }
+        const rawNumber = CONFIG.whatsappNumber || '';
+        const normalized = normalizeWhatsAppNumber(rawNumber);
+        const encoded = encodeURIComponent(message);
+        const waUrl = `https://wa.me/${normalized}?text=${encoded}`;
+
+        hideLoading();
+        window.open(waUrl, '_blank');
+      }, 800);
+    });
+
+    /************************************************************************
+     * UX helpers
+     *************************************************************************/
+    function scrollToOrder(){
+      const el = qs('#order');
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=> qs('#fullName').focus(),350);
+    }
+    qs('#heroOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
+    qs('#finalOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
+
+    // Preserve tracking params on pageshow
+    window.addEventListener('pageshow', function(){ const p = getQueryParams();
+      ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
+        if(p[k]) qs('#'+k).value = p[k];
+      });
+    });
+  </script>
+</body>
+</html>
