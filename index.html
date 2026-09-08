@@ -11,10 +11,9 @@
     /* MickeyGem — mobile-first, black + gold (#C9A227) */
     :root{
       --gold: #C9A227;
-      --gold-2: linear-gradient(180deg,#d0aa2f,#b5861a);
       --accent: #0b0b0b;
       --muted: #6c6c6c;
-      --bg: #f7f4ef;       /* warm off-white to match logo texture */
+      --bg-color: #f7f4ef;       /* warm off-white fallback */
       --card-bg: #ffffff;
       --max-width: 980px;
       --radius: 12px;
@@ -26,27 +25,29 @@
     html,body{height:100%}
     body{
       margin:0;
-      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       color:var(--accent);
-      background:var(--bg) no-repeat center top / cover;
+      background-color:var(--bg-color);
+      /* Texture background (place your Image 2 at images/bg-texture.jpg) */
+      background-image: url('images/bg-texture.jpg');
+      background-repeat:repeat;
+      background-position: center top;
+      background-size: auto;
       -webkit-text-size-adjust:100%;
     }
 
     .container{max-width:var(--max-width);margin:0 auto;padding:18px;}
 
-    /* Header */
     header{display:flex;align-items:center;gap:14px;padding:10px 0}
     .logo-link{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
     .logo-img{height:48px;width:auto;display:block}
     .brand-text{font-weight:800;color:var(--accent);font-size:18px;letter-spacing:0.2px}
 
-    /* HERO */
     .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center;padding:6px 0 20px}
     .hero-content h1{font-size:22px;line-height:1.08;margin:0 0 8px;font-weight:800;color:var(--accent)}
     .hero-content p.lead{margin:0 0 10px;color:var(--muted);font-size:15px}
-    .hero-content p.lead strong{color:var(--accent)}
     .hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
     .btn{
       background:var(--gold);
@@ -57,14 +58,11 @@
       transition:transform .08s ease;
     }
     .btn:active{transform:translateY(1px)}
-    .btn.secondary{
-      background:transparent;color:var(--accent);border:2px solid rgba(11,11,11,.06);box-shadow:none;font-weight:700;
-    }
+    .btn.secondary{background:transparent;color:var(--accent);border:2px solid rgba(11,11,11,.06);box-shadow:none;font-weight:700}
 
     .hero-image{width:100%;border-radius:var(--radius);overflow:hidden;display:flex;justify-content:center;align-items:center}
     .hero-image img{width:100%;height:auto;max-width:640px;object-fit:cover;border-radius:var(--radius);display:block}
 
-    /* How it works */
     h2{margin:18px 0 8px;font-size:18px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:6px 0 18px}
     .card{padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid rgba(0,0,0,.04);text-align:center;box-shadow:var(--shadow)}
@@ -72,7 +70,6 @@
     .card h4{margin:6px 0 6px;font-size:15px}
     .card p{margin:0;color:var(--muted);font-size:13px}
 
-    /* Order form */
     #order{background:var(--card-bg);padding:16px;border-radius:var(--radius);box-shadow:var(--shadow);margin:10px 0}
     #order h2{margin:0 0 6px}
     #order p.sub{color:var(--muted);margin:0 0 12px;font-size:14px}
@@ -101,7 +98,6 @@
     .final-cta{padding:18px;border-radius:12px;text-align:center;margin:18px 0;background:linear-gradient(180deg,rgba(201,162,39,.06),transparent)}
     footer{padding:18px 0;color:var(--muted);font-size:13px;text-align:center}
 
-    /* small screens */
     @media(min-width:720px){
       .hero{grid-template-columns:1fr 520px}
       .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -109,14 +105,12 @@
       .testimonials{grid-template-columns:repeat(3,1fr)}
     }
 
-    /* simple utility */
     .muted { color:var(--muted); }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <!-- Logo image (images/logo.png provided by you) -->
       <a href="/" class="logo-link" aria-label="MickeyGem home">
         <img src="images/logo.png" alt="MickeyGem logo" class="logo-img" />
         <span class="brand-text">MickeyGem</span>
@@ -136,7 +130,7 @@
       </div>
 
       <div class="hero-image" aria-hidden="true">
-        <!-- Model hero photo you requested -->
+        <!-- Model hero photo -->
         <img id="heroImg" src="images/product-hero.png" alt="Model wearing MickeyGem magnetic earrings" />
       </div>
     </section>
@@ -169,14 +163,12 @@
       <p class="sub">Enter your details below and we'll confirm your order on WhatsApp.</p>
 
       <form id="orderForm" autocomplete="off" novalidate>
-        <!-- FIELD 1: Full Name -->
         <div class="field">
           <label for="fullName">Full Name <span class="small" id="nameNote">*</span></label>
           <input id="fullName" name="fullName" type="text" placeholder="Enter your full name" required />
           <div class="small hidden" id="errName" style="color:var(--gold)">Please enter your full name.</div>
         </div>
 
-        <!-- FIELD 2: Region and Town/Area (Ghana regions preserved) -->
         <div class="field flex">
           <div class="col">
             <label for="region">Which region are you located in? <span class="small" id="regionRequired">*</span></label>
@@ -208,7 +200,6 @@
           </div>
         </div>
 
-        <!-- FIELD 3: How many pairs -->
         <div class="field">
           <label for="quantity">How many pairs do you want?</label>
           <select id="quantity" name="quantity" class="quantity-selector" required>
@@ -218,7 +209,6 @@
           <div class="small hidden" id="errQuantity" style="color:var(--gold)">Please select how many pairs you want.</div>
         </div>
 
-        <!-- FIELD 4: Delivery or Pickup -->
         <div class="field">
           <label>How would you like to receive your order?</label>
           <div class="radio-row" role="radiogroup" aria-label="Delivery or Pickup">
@@ -228,7 +218,6 @@
           <div class="small">If you choose Pickup we may ask for a preferred pickup point when confirming on WhatsApp.</div>
         </div>
 
-        <!-- FIELD 5: Customer qualification -->
         <div class="field">
           <label>Are you ready to order?</label>
           <div class="radio-row" role="radiogroup" aria-label="Are you ready to order">
@@ -237,7 +226,6 @@
           </div>
         </div>
 
-        <!-- Hidden tracking fields (auto-populated) -->
         <input type="hidden" id="fbclid" name="fbclid" />
         <input type="hidden" id="utm_source" name="utm_source" />
         <input type="hidden" id="utm_medium" name="utm_medium" />
@@ -348,7 +336,7 @@
      * CONFIGURATION (central place to change values)
      *************************************************************************/
     const CONFIG = {
-      whatsappNumber: '+233551757001',    // easy to change
+      whatsappNumber: '+233551757001',
       productName: 'MickeyGem',
       productPrice: 'N/A',
       productImages: [
@@ -357,16 +345,13 @@
         'images/product-3.jpg',
       ],
       testimonials: [],
-      metaPixelId: '', // add your Meta Pixel ID if you have one
+      metaPixelId: '',
       ctaText: 'Order Yours Now',
       availableQuantities: [
         '1 Pair','2 Pairs','3 Pairs','4 Pairs','5 Pairs','6 Pairs','7 Pairs','8 Pairs','9 Pairs','10 Pairs','11+ Pairs'
       ]
     };
 
-    /************************************************************************
-     * Helpers
-     *************************************************************************/
     const qs = s => document.querySelector(s);
     const qsa = s => Array.from(document.querySelectorAll(s));
     function normalizeWhatsAppNumber(n){ return n.replace(/\D/g,'').replace(/^0+/,''); }
@@ -382,14 +367,9 @@
       return params;
     }
 
-    /************************************************************************
-     * Init page from CONFIG
-     *************************************************************************/
     document.getElementById('footerBrand').textContent = CONFIG.productName || 'MickeyGem';
-    // set hero image explicitly (requested)
     qs('#heroImg').src = 'images/product-hero.png';
 
-    // populate showcase images
     const showcase = qs('#productShowcase');
     showcase.innerHTML = '';
     (CONFIG.productImages || []).forEach(src=>{
@@ -399,7 +379,6 @@
       showcase.appendChild(img);
     });
 
-    // populate quantities
     const quantitySelect = qs('#quantity');
     if(CONFIG.availableQuantities && CONFIG.availableQuantities.length){
       quantitySelect.innerHTML = '<option value="">Select quantity</option>';
@@ -411,7 +390,6 @@
       });
     }
 
-    // capture URL tracking params
     const params = getQueryParams();
     ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
       if(params[k]) {
@@ -420,9 +398,6 @@
       }
     });
 
-    /************************************************************************
-     * Optional Meta Pixel
-     *************************************************************************/
     (function initPixel(){
       if(!CONFIG.metaPixelId) return;
       !function(f,b,e,v,n,t,s){
@@ -437,9 +412,6 @@
       fbq('track','PageView');
     })();
 
-    /************************************************************************
-     * Form handling & WhatsApp prefill
-     *************************************************************************/
     const form = qs('#orderForm');
     const loading = qs('#loading');
 
@@ -482,7 +454,6 @@
       const utm_content = qs('#utm_content').value || params.utm_content || '';
       const fbclid = qs('#fbclid').value || params.fbclid || '';
 
-      // Build message
       let message = `Hello, I would like to order the ${CONFIG.productName}.\n\n`;
       message += `Name: ${name}\n`;
       message += `Region: ${region}\n`;
@@ -515,9 +486,6 @@
       }, 800);
     });
 
-    /************************************************************************
-     * UX helpers
-     *************************************************************************/
     function scrollToOrder(){
       const el = qs('#order');
       el.scrollIntoView({behavior:'smooth',block:'center'});
@@ -526,7 +494,6 @@
     qs('#heroOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
     qs('#finalOrderBtn').addEventListener('click', function(e){ e.preventDefault(); scrollToOrder(); });
 
-    // Preserve tracking params on pageshow
     window.addEventListener('pageshow', function(){ const p = getQueryParams();
       ['fbclid','utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{
         if(p[k]) qs('#'+k).value = p[k];
